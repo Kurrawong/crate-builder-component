@@ -145,7 +145,10 @@ export class CrateManager {
     );
     this.entities.forEach((entity) => {
       entity = cloneDeep(entity);
-      entity["@type"] = entity["@type"].split(", ");
+      entity["@type"] =
+        entity["@type"] == "@id"
+          ? null
+          : entity["@type"].split(", ");
       entity = this.rehydrateEntity({
         entity,
         propertiesGroupedBySrcId,
@@ -495,14 +498,15 @@ export class CrateManager {
     }
 
     // is there a name?
-    if (!entity.name) entity.name = entity["@id"];
+    // if (!entity.name) entity.name = entity["@id"];
 
     // if no @type then set to URL or Thing
     if (!entity["@type"])
-      entity["@type"] = isURL(entity["@id"]) ? "URL" : "Thing";
+      //   entity["@type"] = isURL(entity["@id"]) ? "URL" : "Thing";
+      entity["@type"] = "@id";
 
     // set type as string if it's an array
-    if (isArray(entity["@type"])) entity["@type"] = entity["@type"].join(", ");
+    // if (isArray(entity["@type"])) entity["@type"] = entity["@type"].join(", ");
 
     entity = { describoId: id, ...entity };
     let e = this.coreProperties
@@ -544,8 +548,6 @@ export class CrateManager {
             targetEntity = this.addEntity({
               entity: {
                 "@id": instance["@id"],
-                "@type": isURL(instance["@id"]) ? "URL" : "Thing",
-                name: instance["@id"],
               },
             });
             pushProperty({
