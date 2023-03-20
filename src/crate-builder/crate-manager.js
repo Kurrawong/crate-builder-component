@@ -134,7 +134,7 @@ export class CrateManager {
       "@context": this.profile?.context
         ? cloneDeep(this.profile.context)
         : cloneDeep(this.context),
-      "@graph": [cloneDeep(this.rootDescriptor)],
+      "@graph": [],
     };
 
     this.__purgeUnlinkedEntities();
@@ -146,9 +146,7 @@ export class CrateManager {
     this.entities.forEach((entity) => {
       entity = cloneDeep(entity);
       entity["@type"] =
-        entity["@type"] == "@id"
-          ? null
-          : entity["@type"].split(", ");
+        entity["@type"] == "@id" ? null : entity["@type"].split(", ");
       entity = this.rehydrateEntity({
         entity,
         propertiesGroupedBySrcId,
