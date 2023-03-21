@@ -66,13 +66,13 @@ export class CrateManager {
         this.rootDescriptor = { ...e };
       } else {
         //  ensure every entity has a defined type
-        if (!e?.["@type"]) {
-          this.errors.push({
-            message: `The entity does not have '@type' defined.`,
-            entity: e,
-          });
-          continue;
-        }
+        // if (!e?.["@type"]) {
+        //   this.errors.push({
+        //     message: `The entity does not have '@type' defined.`,
+        //     entity: e,
+        //   });
+        //   continue;
+        // }
 
         // then see if @id is a valid IRI
         let result = validateId(e["@id"], e["@type"]);
