@@ -29,14 +29,14 @@
             <render-entity-type-component :entity="data.entity" class="my-2 p-2" />
 
             <!-- render entity name -->
-            <render-entity-name-component
+            <!-- <render-entity-name-component
                 class="my-2 p-2"
                 :class="{
                     'bg-green-200 rounded p-1 my-1': data.savedProperty === 'name',
                 }"
                 :entity="data.entity"
                 @update:entity="updateEntity"
-            />
+            /> -->
 
             <!-- render entity properties -->
             <div v-for="(values, property) of data.entity.properties" :key="property">
@@ -141,7 +141,7 @@
                                 />
 
                                 <!-- render entity name -->
-                                <render-entity-name-component
+                                <!-- <render-entity-name-component
                                     class="my-2 p-2"
                                     :class="{
                                         'bg-green-200 rounded p-1 my-1':
@@ -150,7 +150,7 @@
                                     :entity="data.tabs[0].entity"
                                     @save:property="saveProperty"
                                     @update:entity="updateEntity"
-                                />
+                                /> -->
                             </div>
 
                             <!-- render entity properties -->
@@ -213,7 +213,7 @@
 <script setup>
 import RenderEntityIdComponent from "./RenderEntityId.component.vue";
 import RenderEntityTypeComponent from "./RenderEntityType.component.vue";
-import RenderEntityNameComponent from "./RenderEntityName.component.vue";
+// import RenderEntityNameComponent from "./RenderEntityName.component.vue";
 import RenderEntityPropertyComponent from "./RenderEntityProperty.component.vue";
 import RenderEntityReverseItemLinkComponent from "./RenderReverseItemLink.component.vue";
 import RenderControlsComponent from "./RenderControls.component.vue";
